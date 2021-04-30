@@ -47,7 +47,7 @@ export default {
     background: #fff;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
-    padding: 17px;
+    padding: 15px;
     width: 264px;
     margin-bottom: 16px;
     position: relative;

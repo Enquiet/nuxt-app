@@ -99,11 +99,7 @@ export default {
 <style lang="scss">
   @import "@/assets/scss/style.scss";
   .main{
-    background: $bg-main;
     padding-top:32px ;
-    &__title{
-      margin-bottom: 24px;
-    }
   }
   .container.main-wrapper{
     padding-top: 32px;
@@ -111,6 +107,7 @@ export default {
   .main__wrapper{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 24px;
   }
   .category__list{
     list-style: none;

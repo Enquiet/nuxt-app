@@ -94,6 +94,7 @@ export default {
 </script>
 <style lang="scss">
 @import "@/assets/scss/style.scss";
+
   .cart{
     position: fixed;
     z-index: 9998;
@@ -108,7 +109,7 @@ export default {
       margin-left: auto;
       max-width: 460px;
       min-height: 100%;
-      padding: 52px 48px;
+      padding: 32px 48px;
       box-shadow: -4px 0px 16px rgba(0, 0, 0, 0.05);
       border-radius: 8px 0px 0px 8px;
       position: relative;
@@ -130,10 +131,10 @@ export default {
       justify-content: space-between;
     }
     &__title{
-      margin-bottom: 24px;
+      margin-bottom: 15px;
     }
     &__list{
-      margin-bottom: 32px;
+      margin-bottom: 22px;
     }
     &__form {
       margin-top: 16px;
@@ -155,7 +156,7 @@ export default {
   .form{
     &__btn{
       margin-top: 24px;
-      margin-bottom: 32px
+      margin-bottom: 22px
     }
     &__error{
       line-height: $line-height-m;
