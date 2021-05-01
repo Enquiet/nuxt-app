@@ -30,7 +30,7 @@
           <FormField v-model="infoUser.adress" type="text" placeholder="Адрес"/>
           <button class="form__btn btn" >Отправить</button>
           <p class="form__error"
-          v-if="$v.infoUser.name.$error || $v.infoUser.phone.$error || $v.infoUser.adress.$error">
+          v-if="$v.infoUser.$error">
             Все поля обязательные. <br>После удачной отправки формы содержимое корзины очищается
           </p>
         </form>
@@ -61,9 +61,9 @@ export default {
   },
   validations:{
     infoUser:{
-      name:{required},
+      name:{ required },
       phone: { required, minLength: minLength(11)},
-      adress:{required},
+      adress:{ required },
     }
   },
   components:{
