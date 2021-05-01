@@ -16,7 +16,7 @@
       </div>
       <div class="cart__inner" v-else-if="productsCard.length">
         <p class="cart__sub">Товары в корзине</p>
-        <ul class="cart__list product-cart" :class="{'scrol-bar': productsCard.length > 3 }">
+        <ul class="cart__list product-cart" :class="{'scroll-bar': productsCard.length > 3 }">
           <CartItem
             v-for="item in productsCard"
             :key="item.id"
@@ -25,16 +25,12 @@
         </ul>
         <p class="cart__sub">Оформить заказ</p>
         <form class="cart__form form" @submit.prevent="addOrder">
-          <FormField v-model="name" type="text" placeholder="Ваше имя"/>
-          <FormField v-model="phone" v-mask="'+7 (###) ###-##-##'" type="tel" placeholder="Телефон"/>
-          <FormField v-model="adress" type="text" placeholder="Адрес"/>
+          <FormField v-model="infoUser.name" type="text" placeholder="Ваше имя"/>
+          <FormField v-model="infoUser.phone" v-mask="'+7 (###) ###-##-##'" type="tel" placeholder="Телефон"/>
+          <FormField v-model="infoUser.adress" type="text" placeholder="Адрес"/>
           <button class="form__btn btn" >Отправить</button>
           <p class="form__error"
-          v-if="
-            $v.name.$dirty &&!$v.name.required ||
-            ($v.phone.$dirty &&!$v.phone.required || !$v.phone.minLength) ||
-            $v.adress.$dirty &&!$v.adress.required"
-          >
+          v-if="$v.infoUser.name.$error || $v.infoUser.phone.$error || $v.infoUser.adress.$error">
             Все поля обязательные. <br>После удачной отправки формы содержимое корзины очищается
           </p>
         </form>
@@ -55,16 +51,20 @@ import {  required, minLength } from 'vuelidate/lib/validators'
 export default {
   data(){
     return{
-      name:'',
-      phone: '',
-      adress:'',
+      infoUser:{
+        name:'',
+        phone: '',
+        adress:''
+      },
       order: false
     }
   },
   validations:{
-    name:{required},
-    phone: { required, minLength: minLength(11)},
-    adress:{required},
+    infoUser:{
+      name:{required},
+      phone: { required, minLength: minLength(11)},
+      adress:{required},
+    }
   },
   components:{
     CartItem, FormField
@@ -79,12 +79,11 @@ export default {
       this.setStatusCatrActive(false)
     },
     addOrder(){
-      if(this.$v.$invalid){
-        this.$v.$touch()
-        return
+      this.$v.infoUser.$touch()
+      if(!this.$v.infoUser.$error){
+        this.clearProductCart()
+        this.order = true
       }
-      this.clearProductCart()
-      this.order = true
     }
   },
   created (){

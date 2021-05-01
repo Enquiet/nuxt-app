@@ -71,6 +71,9 @@ ul{
   line-height: $line-height-s;
   font-weight: bold;
 }
-.scrol-bar{
+.scroll-bar{
   overflow-y: scroll;
+}
+.is-invalid{
+  display: block;
 }
